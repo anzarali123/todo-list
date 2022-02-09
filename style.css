@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap');
+
+*,::before,::after {
+    box-sizing: border-box;
+}
+:root {
+    --primary-color: black;
+    --light-color:#fff;
+    --warning-color:rgb(250, 69, 24);
+    --dark-color: #1e293b;
+    --header-color: lightgray;
+    --border-color: #84cc16;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+.todo-list-container {
+    width: 100vw;
+    display: grid;
+    grid:
+    ".  title title ." auto
+    ".  lists tasks ." auto /
+    1fr minmax(250px,350px) minmax(350px,500px) 1fr;
+}
+.title {
+    grid-area: title;
+    font-size: 80px;
+    transform: translateY(-60px);
+    opacity: 0.5;
+    cursor: default;
+}
+form{
+    display: flex;
+    align-items: center;
+}
+ input{
+    order: 1;
+}
+input:focus {
+    outline: none;
+}
+input:focus::placeholder {
+    opacity: 0.5;
+}
+.btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: var(--light-color) ;
+    cursor: pointer;
+}
+.btn:active {
+   transform: scale(0.9);
+}
+.lists-container {
+    grid-area: lists;
+    list-style-type: circle;
+}
+.list-title {
+    font-size: 35px;
+    margin-left: 20px;
+    cursor: default;
+    color: var(--border-color);
+    letter-spacing: 2px;
+}
+.lists {
+    list-style-type: circle;
+}
+.list-name {
+    font-size: 22px;
+    margin-bottom: 15px;
+    width: fit-content;
+    cursor: pointer;
+    opacity: 0.6;
+    letter-spacing: 1px;
+}
+.list-name.active-list {
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 900;
+    opacity: 1;
+}
+.list-name.active-list:hover {
+    opacity: 0.8;
+}
+.list-name:hover {
+    opacity: 1;
+}
+.create-new-list input {
+    font-size: 20px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--light-color);
+    color: var(--light-color);
+    transition: border-bottom 100ms ease;
+}
+.create-new-list input:focus {
+    border-bottom: 2px solid var(--light-color);
+}
+.create-new-list input::placeholder {
+    color: lightgray;
+    text-indent: 6px;
+}
+
+.tasks-container {
+    grid-area: tasks;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    position: relative;
+}
+ .active-list-details {
+    background: var(--header-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 30px;
+    cursor: default;
+    letter-spacing: 1px;
+}
+.active-list-name {
+    margin-right: 10px;
+    font-size: 30px;
+}
+.task {
+    border-bottom: 1px solid var(--header-color);
+}
+.task label {
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 3rem;
+    margin-left: 20px;
+    transition: transform 100ms ease;
+    cursor: pointer;
+}
+
+[type = "checkbox"] {
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+}
+ label .custom-checkbox {
+    display: inline-block;
+    margin-right: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid black;
+    transition: all 100ms ease;
+}
+  label:hover .custom-checkbox{
+     transform: scale(1.3);
+ }
+ 
+ [type = "checkbox"]:checked + label .custom-checkbox {
+     background-color: var(--warning-color);
+     box-shadow: inset 0 0 0 2px  white;
+ }
+ label{
+     position: relative;
+ }
+ [type = "checkbox"]:checked + label::before {
+     content: "";
+     position: absolute;
+     top: 50%;
+     left: 1.3rem;
+     width: 90%;
+     border: 1px solid black;
+ }
+ [type = "checkbox"]:checked + label {
+     opacity: 0.5;
+ }
+ .create-new-task {
+     margin-top: 20px;
+ }
+ .create-new-task input{
+  font-size: 20px;
+  border: none;
+  border-bottom: 1px solid var(--dark-color);
+  transition: border-bottom 200ms ease-in-out;
+ }
+ .create-new-task input::placeholder {
+     text-indent: 5px;
+ }
+ .create-new-task input:focus {
+     border-bottom-width: 2px;
+ }
+ .create-new-task-btn {
+     color: var(--dark-color);
+ }
+
+ .delete-stuff {
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: -35px;
+  }
+ .delete-btn {
+     background: none;
+     border: none;
+     font-size: 17px;
+     color: var(--light-color);
+     text-transform: uppercase;
+     cursor: pointer;
+     letter-spacing: 1px;
+ }
+ .delete-btn:hover {
+     color: var(--warning-color);
+ }
+
+
+ /* ---------------------Media queries------------------------- */
+
+ @media(max-width:890px) {
+    .todo-list-container {
+        width: 100vw;
+        display: grid;
+        grid:
+        " . title title ." auto
+        " . lists tasks . " auto /
+        1fr minmax(250px,300px) minmax(350px,500px) 1fr;
+    }
+    .title {
+        font-size: 50px;
+        transform: translateY(-30px);
+    }
+    .active-list-details {
+        padding: 0 10px;
+    }
+    .active-list-name {
+        margin-right: 10px;
+        font-size: 20px;
+    }
+ }
+
+ @media(max-width:840px) {
+    .todo-list-container {
+        width: 100vw;
+        display: grid;
+        grid:
+        " . title title ." auto
+        " . lists tasks . " auto /
+        1fr minmax(250px,300px) minmax(300px,400px) 1fr;
+    }
+    .title {
+        font-size: 50px;
+        transform: translateY(-30px);
+    }
+    .active-list-details {
+        padding: 0 10px;
+    }
+    .active-list-name {
+        margin-right: 10px;
+        font-size: 20px;
+    }
+    .delete-btn {
+        font-size: 15px;
+    }
+ }
+
+ @media(max-width:740px) {
+    .todo-list-container {
+        width: 100vw;
+        display: grid;
+        grid:
+        " . title title ." auto
+        " . lists tasks . " auto /
+        1fr minmax(250px,300px) 300px 1fr;
+    }
+    .active-list-details {
+        padding: 0 10px;
+    }
+    .active-list-name {
+        margin-right: 10px;
+        font-size: 20px;
+    }
+    .delete-stuff {
+        justify-content: space-between;
+    }
+    .delete-btn {
+        font-size: 12px;
+    }
+    .list-name {
+        font-size: 18px;
+    }
+    .list-title {
+        font-size: 25px;
+    }
+    .create-new-list input {
+        font-size: 20px;
+    }
+ }
+
+ @media(max-width:625px) {
+    .todo-list-container {
+        width: 100vw;
+        display: grid;
+        grid:
+        "  . title title " auto
+        " . lists  .   " auto
+        " .   tasks  .    " auto/
+        1fr minmax(250px,400px) 1fr ;
+    }
+    .lists-container {
+        margin-bottom: 50px;
+    }
+ }
+
+ @media(max-width:499px) {
+    .title {
+        font-size: 30px;
+        transform: translateY(-10px);
+    }
+ }
+
+ @media(max-width:415px) {
+    .todo-list-container {
+        width: 100vw;
+        display: grid;
+        grid:
+        "  . title title " auto
+        " . lists  .   " auto
+        " .   tasks  .    " auto/
+        1fr minmax(250px,350px) 1fr ;
+    }
+ }
+
+ @media(max-width:373px) {
+    .todo-list-container {
+        width: 100vw;
+        display: grid;
+        grid:
+        "  . title title " auto
+        " . lists  .   " auto
+        " .   tasks  .    " auto/
+        1fr minmax(250px,300px) 1fr ;
+    }
+ }
